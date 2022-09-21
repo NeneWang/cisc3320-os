@@ -24,10 +24,12 @@ int main () {
     std::string myline;
     myfile.open("shopping_list.txt");
     
-    ofstream myfile;
-    myfile.open ("example.txt");
-    myfile << "Writing this to a file.\n";
+    ofstream writeFile;
+    writeFile.open("example.txt");
+    writeFile << "Writing this to a file.\n";
+    writeFile.close()
 
+    
     if ( myfile.is_open() ) {
         while ( myfile ) { // equivalent to myfile.good()
             getline (myfile, myline);
