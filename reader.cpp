@@ -25,9 +25,6 @@ int main () {
             getline (myfile, myline);
             cout << myline << '\n';
             TraverseString(myline, myline.length());
-            // if (isascii(c)){
-
-            // }
         }
     }
     else {
