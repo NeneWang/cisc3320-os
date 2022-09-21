@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void TraverseString(string &str, int N)
+void TraverseString(string &str, int N, ofstream &writeFile)
 { 
     // Traverse the string
     for (int i = 0; i < N; i++) {
@@ -13,6 +13,7 @@ void TraverseString(string &str, int N)
         // Print current character
         if(isascii(str[i])){
             cout<< str[i]<< " ";
+            writeFile<<str[i];
         }
         
     }
@@ -26,20 +27,25 @@ int main () {
     
     ofstream writeFile;
     writeFile.open("example.txt");
-    writeFile << "Writing this to a file.\n";
-    writeFile.close()
-
+    // writeFile << "Writing this to a file.\n";
     
+
+
     if ( myfile.is_open() ) {
-        while ( myfile ) { // equivalent to myfile.good()
+        while ( myfile ) { 
             getline (myfile, myline);
+            
+
+            TraverseString(myline, myline.length(), writeFile);
+
             cout << endl;
-            TraverseString(myline, myline.length());
+            writeFile << endl;
         }
     }
     else {
         cout << "Couldn't open file\n";
     }
+    writeFile.close();
     return 0;  
 }
 
