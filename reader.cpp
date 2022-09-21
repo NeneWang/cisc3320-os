@@ -1,21 +1,40 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <ctype.h>
+
+using namespace std;
+
+void TraverseString(string &str, int N)
+{ 
+    // Traverse the string
+    for (int i = 0; i < N; i++) {
+  
+        // Print current character
+        cout<< str[i]<< " ";
+    }
+      
+}
 
 int main () {
-    std::ifstream myfile; 
+    ifstream myfile; 
     std::string myline;
     myfile.open("shopping_list.txt");
     if ( myfile.is_open() ) {
         while ( myfile ) { // equivalent to myfile.good()
-            std::getline (myfile, myline);
-            std::cout << myline << '\n';
+            getline (myfile, myline);
+            cout << myline << '\n';
+            TraverseString(myline, myline.length());
+            // if (isascii(c)){
+
+            // }
         }
     }
     else {
-        std::cout << "Couldn't open file\n";
+        cout << "Couldn't open file\n";
     }
     return 0;  
 }
+
 
 
