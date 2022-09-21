@@ -23,6 +23,11 @@ int main () {
     ifstream myfile; 
     std::string myline;
     myfile.open("shopping_list.txt");
+    
+    ofstream myfile;
+    myfile.open ("example.txt");
+    myfile << "Writing this to a file.\n";
+
     if ( myfile.is_open() ) {
         while ( myfile ) { // equivalent to myfile.good()
             getline (myfile, myline);
