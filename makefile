@@ -1,5 +1,5 @@
 test:
-	make compile < 
+	make compile < sample-arguments
 
 
 compile:

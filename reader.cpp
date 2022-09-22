@@ -5,19 +5,14 @@
 
 using namespace std;
 
-void TraverseString(string &str, int N, ofstream &writeFile)
+void ProrcessLine(string &str, int lineLen, ofstream &writeFile)
 { 
-    // Traverse the string
-    for (int i = 0; i < N; i++) {
-  
-        // Print current character
+    for (int i = 0; i < lineLen; i++) {
         if(isascii(str[i])){
             // cout<< str[i]<< " ";
             writeFile<<str[i];
         }
-        
     }
-      
 }
 
 int main () {
@@ -43,9 +38,7 @@ int main () {
         while ( inputFile ) { 
             getline (inputFile, myline);
             countLines++;
-            TraverseString(myline, myline.length(), writeFile);
-
-            cout << endl;
+            ProrcessLine(myline, myline.length(), writeFile);
             writeFile << endl;
         }
     }
