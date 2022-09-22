@@ -13,6 +13,7 @@ void ProrcessLine(string &str, int lineLen, ofstream &writeFile)
             writeFile<<str[i];
         }
     }
+    writeFile << endl;
 }
 
 int main () {
@@ -21,6 +22,7 @@ int main () {
     
     string myline;
     int countLines = 0;
+    //Default namefiles, in case you want to comment out the cin statements below.
     string inputfilename = "enter.txt";
     string outputfilename = "out.txt";
     
@@ -33,14 +35,13 @@ int main () {
     inputFile.open(inputfilename);    
     writeFile.open(outputfilename);
     
-    // If inputfilename found, and able to open it, process each line
+    // If inputfilename found, and able to open it, process each line, add to the counter
     if ( inputFile.is_open() ) {
         while ( inputFile ) { 
             getline (inputFile, myline);
             ProrcessLine(myline, myline.length(), writeFile);
             
             countLines++;
-            writeFile << endl;
         }
     }
     else {
