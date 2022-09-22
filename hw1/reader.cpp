@@ -44,7 +44,7 @@ int main () {
         }
     }
     else {
-        cout << "Couldn't open file\n";
+        cout << "File not found"<<endl;
     }
     
     cout << "Lines processed: " << countLines << endl;
