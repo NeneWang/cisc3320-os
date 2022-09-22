@@ -21,26 +21,26 @@ void TraverseString(string &str, int N, ofstream &writeFile)
 }
 
 int main () {
-    ifstream myfile; 
-    string myline;
-    string inputfile = "shopping_list.txt";
+    ifstream inputFile; 
+    ofstream writeFile;
     
-    cout<<"Please enter an input file"<<endl;
+    string myline;
+    string inputfilename = "enter.txt";
+    string outputfilename = "out.txt"
+    
+    cout<<"Please enter an input filename"<<endl;
     cin>>inputfile;
 
+    cout<<"Please enter an output filename"<<endl;
+    cin>>outputfilename;
 
-
-    myfile.open(inputfile);
-    
-    ofstream writeFile;
-    writeFile.open("example.txt");
-    // writeFile << "Writing this to a file.\n";
+    inputFile.open(inputfile);    
+    writeFile.open(writeFile);
     
 
-
-    if ( myfile.is_open() ) {
-        while ( myfile ) { 
-            getline (myfile, myline);
+    if ( inputFile.is_open() ) {
+        while ( inputFile ) { 
+            getline (inputFile, myline);
             
 
             TraverseString(myline, myline.length(), writeFile);
