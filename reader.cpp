@@ -25,6 +25,7 @@ int main () {
     ofstream writeFile;
     
     string myline;
+    int countLines = 0;
     string inputfilename = "enter.txt";
     string outputfilename = "out.txt"
     
@@ -41,8 +42,7 @@ int main () {
     if ( inputFile.is_open() ) {
         while ( inputFile ) { 
             getline (inputFile, myline);
-            
-
+            countLines++;
             TraverseString(myline, myline.length(), writeFile);
 
             cout << endl;
@@ -52,6 +52,8 @@ int main () {
     else {
         cout << "Couldn't open file\n";
     }
+    
+    cout << "Lines processed:" << countLines << endl;
     writeFile.close();
     return 0;  
 }
