@@ -26,6 +26,8 @@ Systems calls that might be needed internally for the program to run:
 - receive: Receive messages from processes, that might have been used for internal communication between different processes
 - link, symlink: Creating names for files. It might have been used when naming the created files based on our inputs
 
-![](./2022-09-22-00-48-39.png)
+
+
+![](/../img/2022-09-22-01-15-31.png)
 
 
