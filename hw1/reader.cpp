@@ -33,12 +33,13 @@ int main () {
     inputFile.open(inputfilename);    
     writeFile.open(outputfilename);
     
-
+    // If inputfilename found, and able to open it, process each line
     if ( inputFile.is_open() ) {
         while ( inputFile ) { 
             getline (inputFile, myline);
-            countLines++;
             ProrcessLine(myline, myline.length(), writeFile);
+            
+            countLines++;
             writeFile << endl;
         }
     }
