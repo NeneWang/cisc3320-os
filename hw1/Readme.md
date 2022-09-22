@@ -5,6 +5,7 @@ To run the test run:
 
 ```
 make
+cat out.txt
 ```
 
 ## System calls made 
