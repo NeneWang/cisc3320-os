@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// Process Line by going character by character and writes in the target writefile if is the character is ascii
 void ProrcessLine(string &str, int lineLen, ofstream &writeFile)
 { 
     for (int i = 0; i < lineLen; i++) {
