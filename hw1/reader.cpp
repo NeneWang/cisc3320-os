@@ -6,12 +6,14 @@
 using namespace std;
 
 // Process Line by going character by character and writes in the target writefile if is the character is ascii
-void ProrcessLine(string &str, int lineLen, ofstream &writeFile)
+void ProrcessLine(string &str, int lineLen, ofstream &writeFile, int &countCharactersStripped)
 { 
     for (int i = 0; i < lineLen; i++) {
         if(isascii(str[i])){
             // cout<< str[i]<< " ";
             writeFile<<str[i];
+        }else{
+            countCharactersStripped++;
         }
     }
     writeFile << endl;
@@ -22,7 +24,7 @@ int main () {
     ofstream writeFile;
     
     string myline;
-    int countLines = 0;
+    int countLines = 0, countCharactersStripped = 0;
     //Default namefiles, in case you want to comment out the cin statements below.
     string inputfilename = "enter.txt";
     string outputfilename = "out.txt";
@@ -40,7 +42,7 @@ int main () {
     if ( inputFile.is_open() ) {
         while ( inputFile ) { 
             getline (inputFile, myline);
-            ProrcessLine(myline, myline.length(), writeFile);
+            ProrcessLine(myline, myline.length(), writeFile, countCharactersStripped);
             
             countLines++;
         }
@@ -49,7 +51,7 @@ int main () {
         cout << "File not found"<<endl;
     }
     
-    cout << "Lines processed: " << countLines << endl;
+    cout << "Lines processed: " << countLines << ", Characters Stripped " << countCharactersStripped << endl;
     writeFile.close();
     return 0;  
 }

@@ -3,7 +3,7 @@ test:
 
 
 compile:
-	g++ reader.cpp & ./a.out
+	g++ reader.cpp && ./a.out
 
 
 
