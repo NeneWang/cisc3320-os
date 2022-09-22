@@ -28,6 +28,6 @@ Systems calls that might be needed internally for the program to run:
 
 
 
-![](/../img/2022-09-22-01-15-31.png)
+![](./2022-09-22-01-15-31.png)
 
 
