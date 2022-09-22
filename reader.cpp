@@ -12,7 +12,7 @@ void TraverseString(string &str, int N, ofstream &writeFile)
   
         // Print current character
         if(isascii(str[i])){
-            cout<< str[i]<< " ";
+            // cout<< str[i]<< " ";
             writeFile<<str[i];
         }
         
@@ -27,16 +27,16 @@ int main () {
     string myline;
     int countLines = 0;
     string inputfilename = "enter.txt";
-    string outputfilename = "out.txt"
+    string outputfilename = "out.txt";
     
     cout<<"Please enter an input filename"<<endl;
-    cin>>inputfile;
+    cin>>inputfilename;
 
     cout<<"Please enter an output filename"<<endl;
     cin>>outputfilename;
 
-    inputFile.open(inputfile);    
-    writeFile.open(writeFile);
+    inputFile.open(inputfilename);    
+    writeFile.open(outputfilename);
     
 
     if ( inputFile.is_open() ) {
@@ -53,7 +53,7 @@ int main () {
         cout << "Couldn't open file\n";
     }
     
-    cout << "Lines processed:" << countLines << endl;
+    cout << "Lines processed: " << countLines << endl;
     writeFile.close();
     return 0;  
 }
