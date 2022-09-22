@@ -7,7 +7,7 @@ To run the test run:
 make
 ```
 
-## Process calls made 
+## System calls made 
 
 Systems calls that might be needed internally for the program to run:
 
