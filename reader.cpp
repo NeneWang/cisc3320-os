@@ -22,8 +22,15 @@ void TraverseString(string &str, int N, ofstream &writeFile)
 
 int main () {
     ifstream myfile; 
-    std::string myline;
-    myfile.open("shopping_list.txt");
+    string myline;
+    string inputfile = "shopping_list.txt";
+    
+    cout<<"Please enter an input file"<<endl;
+    cin>>inputfile;
+
+
+
+    myfile.open(inputfile);
     
     ofstream writeFile;
     writeFile.open("example.txt");
