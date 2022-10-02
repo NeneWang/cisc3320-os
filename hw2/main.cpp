@@ -3,9 +3,11 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-int main(){
+using namespace std;
 
-    std::cout << "testing gnu";
+int main(){
+    fork();
+    std::cout << "testing gnu" << endl;
 
 }
 

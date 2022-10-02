@@ -4,7 +4,7 @@ test:
 
 
 compile:
-	g++ main.cpp && a.exe
+	g++ main.cpp && ./a.out
 
 
 
