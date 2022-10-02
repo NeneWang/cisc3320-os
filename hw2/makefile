@@ -3,14 +3,15 @@ test:
 	make compile 
 
 test-all:
-	make compile-f file=thread-exec
+	make compile-f file=thread-exec 
+	make compile-f file=bank
 
 compile:
-	g++ main.cpp && ./a.out
+	g++ main.cpp -std=c++11 && ./a.out
 
 
 compile-f:
-	g++ {file}.cpp && ./a.out
+	g++ ${file}.cpp -std=c++11 && ./a.out
 
 
 
