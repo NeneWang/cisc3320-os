@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
+#include <unordered_map>
 
 
 #include <string>
@@ -35,22 +36,34 @@ int main(){
     // string outputfilename = "out.txt";
     string myline;
     int countLines = 0;
+    int maxLen = 0;
+    int countCharacters;
 
     ifstream inputFile; 
 
-    cout<<"Please enter an input filename"<<endl;
-    cin>>inputfilename;
+    // cout<<"Please enter an input filename"<<endl;
+    // cin>>inputfilename;
 
     inputFile.open(inputfilename);  
     
     if ( inputFile.is_open() ) {
         while ( inputFile ) { 
             getline (inputFile, myline);
+            int wordLen = myline.length();
             // ProrcessLine(myline, myline.length(), writeFile, countCharactersStripped);
-            
+            // cout << "Line n: "<< countLines  << " "  << myline<< " "<< myline.length() <<endl;
             countLines++;
+            countCharacters+=wordLen;
+            maxLen = max(wordLen, maxLen);
+
+            
+
         }
     }
+
+    int meanWordLen = countCharacters / countLines;
+
+    cout << countLines << "max len word" << maxLen << " Mean word len" << meanWordLen <<endl;
 
     
 
