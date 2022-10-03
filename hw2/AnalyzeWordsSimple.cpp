@@ -17,6 +17,9 @@
 
 using namespace std;
 
+#define ALPHACOUNT 26
+#define ASCIIA 97
+
 
 std::string GetTime(){
     auto nowTime = std::chrono::system_clock::now();
@@ -38,15 +41,11 @@ int main(){
     int countLines = 0;
     int maxLen = 0;
     int countCharacters;
-    int characterCountArr[26] = {0};
+    int characterCountArr[ALPHACOUNT] = {0};
     int maxLetterCount = 0;
     char maxLetterChar;
 
     ifstream inputFile; 
-    // unordered_map word_map;
-
-    // cout<<"Please enter an input filename"<<endl;
-    // cin>>inputfilename;
 
     inputFile.open(inputfilename);  
     
@@ -54,22 +53,19 @@ int main(){
         while ( inputFile ) {
             getline (inputFile, myline);
             int wordLen = myline.length();
-            // ProrcessLine(myline, myline.length(), writeFile, countCharactersStripped);
-            // cout << "Line n: "<< countLines  << " "  << myline<< " "<< myline.length() <<endl;
             countLines++;
             countCharacters+=wordLen;
             maxLen = max(wordLen, maxLen);
             
             for(int i = 0; i< wordLen ; i++){
-                // cout << myline << " : ";
-                int arrCode = tolower(myline[i] - 97);
+                
+                int arrCode = tolower(myline[i] - ASCIIA);
                 if(arrCode > 25  | arrCode < 0){
                     continue;
                 }
-                // cout << << endl;
-                
+                                
                 characterCountArr[
-                     tolower(myline[i] - 97)
+                     tolower(myline[i] - ASCIIA)
                 ]++;
             }
 
@@ -78,7 +74,7 @@ int main(){
             // cout << i << endl;
             if(i > maxLetterCount){
                 maxLetterCount=characterCountArr[i];
-                maxLetterChar = char(96+i);
+                maxLetterChar = char(ASCIIA+i);
             }
             
         }
