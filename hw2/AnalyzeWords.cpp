@@ -48,7 +48,7 @@ double averageLength(ifstream &inputFile){
 
     }
 
-    return countCharacters/countLines;
+    return double(countCharacters)/countLines;
 
 }
 
@@ -67,6 +67,8 @@ int main(){
 
     inputFile.open(INPUTFILENAME);
     double averagelen = averageLength(inputFile);
+
+    
     cout<<"Average length " << averagelen<<endl;
 
 
