@@ -20,7 +20,7 @@ using namespace std;
 
 #define ALPHACOUNT 26
 #define ASCIIA 97
-#define INPUTFILENAME english_words.txt
+#define INPUTFILENAME "english_words.txt"
 
 std::string GetTime(){
     auto nowTime = std::chrono::system_clock::now();
@@ -31,40 +31,43 @@ std::string GetTime(){
 
 
 
-void averageLength(ifstream &inputFile){
+double averageLength(ifstream &inputFile){
     int countLines = 0;
-    int countCharacters;
-
+    int countCharacters=0;
+    string singleLine;
 
     // Calculates the average length of all words
     // Loop words and figures out the lenght, then add to counter and so.
+    while(inputFile){
+        getline(inputFile, singleLine);
+        
+        int wordLen = singleLine.length();
+        countLines++;
+        countCharacters+=wordLen;
+
+
+    }
+
+    return countCharacters/countLines;
+
 }
 
 
 int main(){
-    string myline;
-    
     int maxLen = 0;
     
     int characterCountArr[ALPHACOUNT] = {0};
 
-    
+
     int maxLetterCount = 0;
     char maxLetterChar;
 
 
     ifstream inputFile; 
 
-    inputFile.open(inputfilename);
-    averageLength(inputFile)
-
-
-
-
-
-
-
-
+    inputFile.open(INPUTFILENAME);
+    double averagelen = averageLength(inputFile);
+    cout<<"Average length " << averagelen<<endl;
 
 
 
