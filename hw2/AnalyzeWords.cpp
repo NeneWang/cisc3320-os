@@ -38,8 +38,12 @@ int main(){
     int countLines = 0;
     int maxLen = 0;
     int countCharacters;
+    int characterCountArr[26] = {0};
+    int maxLetterCount = 0;
+    char maxLetterChar;
 
     ifstream inputFile; 
+    // unordered_map word_map;
 
     // cout<<"Please enter an input filename"<<endl;
     // cin>>inputfilename;
@@ -47,7 +51,7 @@ int main(){
     inputFile.open(inputfilename);  
     
     if ( inputFile.is_open() ) {
-        while ( inputFile ) { 
+        while ( inputFile ) {
             getline (inputFile, myline);
             int wordLen = myline.length();
             // ProrcessLine(myline, myline.length(), writeFile, countCharactersStripped);
@@ -55,20 +59,36 @@ int main(){
             countLines++;
             countCharacters+=wordLen;
             maxLen = max(wordLen, maxLen);
-
             
+            for(int i = 0; i< wordLen ; i++){
+                // cout << myline << " : ";
+                int arrCode = tolower(myline[i] - 97);
+                if(arrCode > 25  | arrCode < 0){
+                    continue;
+                }
+                // cout << << endl;
+                
+                characterCountArr[
+                     tolower(myline[i] - 97)
+                ]++;
+            }
 
         }
+        for(int i = 0; i< 26; i++ ){
+            // cout << i << endl;
+            if(i > maxLetterCount){
+                maxLetterCount=characterCountArr[i];
+                maxLetterChar = char(96+i);
+            }
+            
+        }
     }
+
 
     int meanWordLen = countCharacters / countLines;
 
     cout << countLines << "max len word" << maxLen << " Mean word len" << meanWordLen <<endl;
-
-    
-
-
-
+    cout << maxLetterChar << " : " << maxLetterCount << endl;    
 
 
 }
