@@ -1,16 +1,20 @@
 test:
-	# make compile < sample-arguments
-	make compile 
+	make compilef file=AnalyzeWords
+
+save:
+	git add --all
+	git commit -m "progress :construction:"
+	git push origin HEAD
 
 test-all:
-	make compile-f file=thread-exec 
-	make compile-f file=bank
+	make compilef file=thread-exec 
+	make compilef file=bank
 
 compile:
 	g++ main.cpp -std=c++11 && ./a.out
 
 
-compile-f:
+compilef:
 	g++ ${file}.cpp -std=c++11 && ./a.out
 
 
