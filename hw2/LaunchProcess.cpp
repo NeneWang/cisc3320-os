@@ -13,10 +13,16 @@ using namespace std;
 
 int main(){
     auto start = high_resolution_clock::now();
+    char *inputfilename;
+    cout<<"Please enter an input filename"<<endl;
+    cin>>inputfilename;
     pid_t pid = fork();
 
+    
+
     if(pid==0){
-        char* argument_list[] = { NULL}; 
+        
+        char* argument_list[] = {inputfilename, NULL}; 
 
         execvp("./analyze.out", argument_list);
         exit(0);

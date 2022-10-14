@@ -1,11 +1,14 @@
 main:
-	make compilef file=AnalyzeWords
-	make compilef file=LaunchProcess
+	make test file=AnalyzeWords 
+	make compilef file=LaunchProcess < sample-arguments
 
 analyze-test:
-	make test file=LaunchProcess
+	make test file=AnalyzeWords
+
 test:
-	g++ ${file}.cpp -std=c++11 -o ${file}.out && ./${file}.out < english_words.txt
+	g++ ${file}.cpp -std=c++11 -o ${file}.out
+	./${file}.out english_words.txt
+	
 
 save:
 	git add --all
