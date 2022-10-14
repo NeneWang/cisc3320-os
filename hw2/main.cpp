@@ -4,33 +4,27 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <bits/stdc++.h>
+#include <iomanip> 
+#include <chrono>
+using namespace std::chrono;
+ 
 
 using namespace std;
 
 int main(){
-    time_t start, end;
+    auto start = high_resolution_clock::now();
     pid_t pid = fork();
 
     if(pid==0){
-        time(&start);
         ios_base::sync_with_stdio(false);
-        cout << "child "  << pid << endl;
-        char* argument_list[] = {"ls", "-l", NULL}; 
-        execvp("ls", argument_list);
-    
+        char* argument_list2[] = { NULL}; 
+        execvp("./analyze.out", argument_list2);
     }if(pid > 0){
-        wait(0);
-        cout << "Parent " << pid << endl;
-        time(&end);
-        double time_taken = double(end - start);
-        cout << "Time taken by program is : " << fixed
-            << time_taken << setprecision(5);
-        cout << " sec " << endl;
+        wait(0);    
     }
-    
-    // std::cout << "testing gnu" << endl;
-
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    cout << "Time taken by function: " << duration.count() << " microseconds" << endl;
 }
 
 

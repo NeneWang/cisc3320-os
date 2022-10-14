@@ -1,8 +1,11 @@
 main:
-	make compilef file=main
+	g++ main.cpp -std=c++11
+	make analyze
+	./a.out
 
-test:
-	make compilef file=AnalyzeWords
+analyze:
+	g++ AnalyzeWords.cpp -o analyze.out -std=c++11
+	
 
 save:
 	git add --all
