@@ -5,7 +5,6 @@ main:
 
 analyze:
 	g++ AnalyzeWords.cpp -o analyze.out -std=c++11
-	
 
 save:
 	git add --all
@@ -19,7 +18,7 @@ test-all:
 compile:
 	g++ main.cpp -std=c++11 && ./a.out
 
-
+	
 compilef:
 	g++ ${file}.cpp -std=c++11 && ./a.out
 

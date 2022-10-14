@@ -21,10 +21,10 @@ int main(){
         execvp("./analyze.out", argument_list2);
     }if(pid > 0){
         wait(0);    
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<microseconds>(stop - start);
+        cout << "Time taken by function: " << duration.count() << " microseconds" << endl;
     }
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<microseconds>(stop - start);
-    cout << "Time taken by function: " << duration.count() << " microseconds" << endl;
 }
 
 
