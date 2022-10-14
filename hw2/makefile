@@ -1,10 +1,11 @@
 main:
-	g++ main.cpp -std=c++11
-	make analyze
-	./a.out
+	make compilef file=AnalyzeWords
+	make compilef file=LaunchProcess
 
-analyze:
-	g++ AnalyzeWords.cpp -o analyze.out -std=c++11
+analyze-test:
+	make test file=LaunchProcess
+test:
+	g++ ${file}.cpp -std=c++11 -o ${file}.out && ./${file}.out < english_words.txt
 
 save:
 	git add --all
@@ -18,9 +19,11 @@ test-all:
 compile:
 	g++ main.cpp -std=c++11 && ./a.out
 
-	
+
+
+
 compilef:
-	g++ ${file}.cpp -std=c++11 && ./a.out
+	g++ ${file}.cpp -std=c++11 -o ${file}.out && ./${file}.out
 
 
 

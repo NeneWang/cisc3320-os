@@ -25,7 +25,6 @@ using namespace std;
 #define INPUTFILENAME "english_words.txt"
 
 
-
 void averageLength(string inputFileName){
     
     ifstream inputFile;
@@ -121,7 +120,7 @@ void mostFrequentLetter(string inputFileName){
 
 
 
-int main(){
+int main(int argc, char* argv[]){
     int maxLen = 0;
     
     int characterCountArr[ALPHACOUNT] = {0};
@@ -135,9 +134,16 @@ int main(){
 
     thread threads[3];
 
-    threads[0] = std::thread(averageLength, INPUTFILENAME);
-    threads[1] = std::thread(longestWord, INPUTFILENAME);
-    threads[2] = std::thread(mostFrequentLetter, INPUTFILENAME);
+    string inputfilename;
+    if(argc > 0){
+        inputfilename = argv[1];
+    }else{
+        inputfilename = INPUTFILENAME;
+    }
+
+    threads[0] = std::thread(averageLength, inputfilename);
+    threads[1] = std::thread(longestWord, inputfilename);
+    threads[2] = std::thread(mostFrequentLetter, inputfilename);
 
     threads[0].join(); 
     threads[1].join(); 

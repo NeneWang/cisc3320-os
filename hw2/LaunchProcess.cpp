@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <iostream>
 #include <sys/wait.h>
-#include <string>
 
 #include <unistd.h>
 #include <stdlib.h>
@@ -15,12 +14,9 @@ using namespace std;
 int main(){
     auto start = high_resolution_clock::now();
     pid_t pid = fork();
-    string inputfilename;
-    cout<<"Please enter an input filename"<<endl;
-    cin>>inputfilename;
 
     if(pid==0){
-        char* argument_list[] = {inputfilename, NULL}; 
+        char* argument_list[] = { NULL}; 
 
         execvp("./analyze.out", argument_list);
         exit(0);
