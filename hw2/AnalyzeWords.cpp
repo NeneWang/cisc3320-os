@@ -65,7 +65,7 @@ void longestWord(string inputFileName){
         
         int wordLen = singleLine.length();
     
-        maxLen = max(wordLen, wordLen);
+        maxLen = max(maxLen, wordLen);
     }
     
     cout << "Longest word length: "<< maxLen <<endl;
@@ -76,7 +76,7 @@ void mostFrequentLetter(string inputFileName){
     
     ifstream inputFile;
     inputFile.open(inputFileName);
-    int maxLetterCount = 0;
+    long maxLetterCount = 0;
     char maxLetterChar;
     int characterCountArr[ALPHACOUNT] = {0};
     string singleLine;
@@ -89,26 +89,33 @@ void mostFrequentLetter(string inputFileName){
     
          for(int i = 0; i< wordLen ; i++){
                 
-                int arrCode = tolower(singleLine[i] - ASCIIA);
-                if(arrCode > 25  | arrCode < 0){
+                int arrCode = tolower(singleLine[i] ) - ASCIIA;
+                if(arrCode >= 26  | arrCode < 0){
                     continue;
                 }
                                 
                 characterCountArr[
-                     tolower(singleLine[i] - ASCIIA)
+                     arrCode
                 ]++;
+                // cout << "arrcode got "<< singleLine[i] <<" " <<arrCode <<endl;
             }
-            for(int i = 0; i< 26; i++ ){
+            for(int i = 0; i < 26; i++ ){
             // cout << i << endl;
-            if(i > maxLetterCount){
+            char let = char(i + ASCIIA );
+            // cout<<"\nchar alpha "<< let << " "<< i << " "<< tolower(let)- ASCIIA  << " "<<characterCountArr[i];
+            
+            if(characterCountArr[i] > maxLetterCount){
                 maxLetterCount=characterCountArr[i];
-                maxLetterChar = char(ASCIIA+i);
+                maxLetterChar = char(ASCIIA+ i );
+                // cout<<characterCountArr[i]<<endl;
+                
             }
             
         }
     }
     
-    cout << "Most Frequent Letter: "<< maxLetterChar <<endl;
+    // cout << char(ASCIIA)<<"Most Frequent Letter: "<< maxLetterChar <<maxLetterCount<<endl;
+    cout <<"Most Frequent Letter: "<< maxLetterChar <<endl;
 }
 
 
