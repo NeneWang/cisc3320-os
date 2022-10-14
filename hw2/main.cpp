@@ -19,6 +19,7 @@ int main(){
         char* argument_list[] = { NULL}; 
 
         execvp("./analyze.out", argument_list);
+        exit(0)
     }if(pid > 0){
         wait(0);    
         auto stop = high_resolution_clock::now();
