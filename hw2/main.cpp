@@ -17,8 +17,9 @@ int main(){
 
     if(pid==0){
         ios_base::sync_with_stdio(false);
-        char* argument_list2[] = { NULL}; 
-        execvp("./analyze.out", argument_list2);
+        char* argument_list[] = { NULL}; 
+        execvp("./analyze.out", argument_list);
+
     }if(pid > 0){
         wait(0);    
         auto stop = high_resolution_clock::now();
