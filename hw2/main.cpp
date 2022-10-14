@@ -16,15 +16,15 @@ int main(){
     pid_t pid = fork();
 
     if(pid==0){
-        ios_base::sync_with_stdio(false);
         char* argument_list[] = { NULL}; 
-        execvp("./analyze.out", argument_list);
 
+        execvp("./analyze.out", argument_list);
     }if(pid > 0){
         wait(0);    
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
-        cout << "Time taken by function: " << duration.count() << " microseconds" << endl;
+
+        cout << "Time to finish all tasks: " << double(duration.count())/1000 << " milliseconds" << endl;
     }
 }
 
