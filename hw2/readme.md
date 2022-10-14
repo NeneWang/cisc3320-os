@@ -1,5 +1,19 @@
 # Readme
 
+Run 
+```
+make
+```
+
+Sample output
+```
+Please enter an input filename
+Average Lenth = 8.10473
+Longest word length: 22
+Most Frequent Letter: e
+Exit value is: 53907552
+Time to finish all tasks: 124.102 ms
+```
 
 
 **Attempt**
