@@ -40,7 +40,7 @@ int main(){
     string myline;
     int countLines = 0;
     int maxLen = 0;
-    int countCharacters;
+    long countCharacters;
     int characterCountArr[ALPHACOUNT] = {0};
     int maxLetterCount = 0;
     char maxLetterChar;
