@@ -1,3 +1,6 @@
+main:
+	make compilef file=main
+
 test:
 	make compilef file=AnalyzeWords
 
