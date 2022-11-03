@@ -9,9 +9,10 @@ void populateNumbers(int range, int *array){
 }
 
 int main(){
-
-    int populatedArr[10];
-    populateNumbers(10, populatedArr);
+    const int SIZE = 1000, SPLITS=5, QUARTER=SIZE/(SPLITS-1);
+    int populatedArr[SIZE];
+    populateNumbers(SIZE, populatedArr);
+    
     cout << populatedArr[4] << endl;
 }
 
