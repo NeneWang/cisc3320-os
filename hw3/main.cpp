@@ -17,6 +17,7 @@ void sumAll(int range, int start, int arrayNums[]){
     
     for(int i = start; i < range; i++){
         sum+=arrayNums[i];
+        // cout << sum  << "THREAD" << range<< endl;
     }
 }
 
