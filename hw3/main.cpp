@@ -8,12 +8,23 @@ void populateNumbers(int range, int *array){
     }
 }
 
+long sumAll(int range, int arrayNums[]){
+    long sum = 0;
+    for(int i = 0; i < range; i++){
+        sum+=arrayNums[i];
+    }
+
+    return sum;
+}
+
 int main(){
-    const int SIZE = 1000, SPLITS=5, QUARTER=SIZE/(SPLITS-1);
+    const int SIZE = 1000, SPLITS=5, FRAMESIZE=SIZE/(SPLITS-1);
     int populatedArr[SIZE];
     populateNumbers(SIZE, populatedArr);
-    
-    cout << populatedArr[4] << endl;
+
+    double sum = sumAll(FRAMESIZE, populatedArr); //This works
+    // double sum = sumAll(SIZE, populatedArr);
+    cout << populatedArr[4] <<  " " << sum << endl;
 }
 
 
