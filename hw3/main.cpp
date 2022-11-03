@@ -30,15 +30,15 @@ int main(){
 
     //  = sumAll(SIZE, SIZE-FRAMESIZE-1 ,populatedArr); //This works
     for (int i = 0; i<SPLITS; i++){
-        int rangeMax = FRAMESIZE*(i+1), rangeMin = rangeMax-FRAMESIZE+1;
-        sumAll(rangeMax, rangeMin, populatedArr);
-        printf("\n%d %d\n", rangeMax, rangeMin);
-        // threads[i] = thread(sumAll, rangeMax, rangeMin, populatedArr);
+        int rangeMax = FRAMESIZE*(i+1), rangeMin = rangeMax-FRAMESIZE;
+        // sumAll(rangeMax, rangeMin, populatedArr);
+        // printf("\n%d %d\n", rangeMax, rangeMin);
+        threads[i] = thread(sumAll, rangeMax, rangeMin, populatedArr);
     }
 
-    // for (int i = 0; i<SPLITS; i++){
-    //     threads[i].join(); 
-    // }
+    for (int i = 0; i<SPLITS; i++){
+        threads[i].join(); 
+    }
     // double sum = sumAll(SIZE, populatedArr);
     
     cout << populatedArr[4] <<  " " << sum << endl;
