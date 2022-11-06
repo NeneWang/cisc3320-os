@@ -38,13 +38,9 @@ int main()
     thread threads[SPLITS];
 
     populateNumbers(SIZE, populatedArr);
-
-    //  = sumAll(SIZE, SIZE-FRAMESIZE-1 ,populatedArr); //This works
     for (int i = 0; i < SPLITS; i++)
     {
         int rangeMax = FRAMESIZE * (i + 1), rangeMin = rangeMax - FRAMESIZE;
-        // sumAll(rangeMax, rangeMin, populatedArr);
-        // printf("\n%d %d\n", rangeMax, rangeMin);
         threads[i] = thread(sumAll, rangeMax, rangeMin, populatedArr);
     }
 
@@ -52,7 +48,6 @@ int main()
     {
         threads[i].join();
     }
-    // double sum = sumAll(SIZE, populatedArr);
 
     cout << sum << endl;
 }
