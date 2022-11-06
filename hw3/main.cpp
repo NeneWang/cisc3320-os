@@ -7,6 +7,8 @@
 using namespace std;
 
 long sum = 0;
+mutex m;
+
 void populateNumbers(int range, int *array)
 {
     for (int i = 1; i <= range; i++)
@@ -20,9 +22,11 @@ void sumAll(int range, int start, int arrayNums[])
 
     for (int i = start; i < range; i++)
     {
+        m.lock();
         int temp = sum + arrayNums[i];
         usleep(1);
         sum = temp;
+        m.unlock();
         // cout << "THREAD" << range<< endl;
     }
 }
