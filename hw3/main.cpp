@@ -54,5 +54,5 @@ int main()
     }
     // double sum = sumAll(SIZE, populatedArr);
 
-    cout << populatedArr[4] << " " << sum << endl;
+    cout << sum << endl;
 }
