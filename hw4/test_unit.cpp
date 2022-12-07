@@ -11,7 +11,7 @@ using namespace std;
 
 void test_p4(void){
     vector<int> res = p4(2); //Should return 2
-    TEST_ASSERT_(res.at(0) == 4, "Checking value");
+    TEST_ASSERT_(res.at(0) == 4, "Checking valueasd");
     loop_vect(res);   
 }
 
