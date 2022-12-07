@@ -4,10 +4,16 @@
 
 #include <iostream>
 #include <vector>
+#include "TranslateAddr.cpp"
+
 using namespace std;
 
 
-
+void test_problem_1_address(void){
+    TranslateAddr ta("19986");
+    auto ans = ta.computeAddressInformation();
+    cout << "\nAns " << ans << endl;
+}
 
 void test_p4(void){
     vector<int> res = p4(2); //Should return 2
@@ -18,4 +24,5 @@ void test_p4(void){
 
 TEST_LIST = {
     {"test_p4", test_p4},
+    {"test_problem_1_address", test_problem_1_address},
     {0}};
