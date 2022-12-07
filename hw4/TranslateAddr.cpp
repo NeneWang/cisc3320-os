@@ -1,40 +1,49 @@
 #include <iostream>
 #include <vector>
-
 #include <iostream>
-
-#include <cstring>
-
-#include <cstdlib>
-
 #include <cstdio>
 
 using namespace std;
 
-#define Pg_no_mask 0xFFFFF000
-
+#define page_number_mask 0xFFFFF000
 #define offset_mask 0x00000FFF
 
 using namespace std;
 
 struct AddressInformation
 {
+    int address = 0;
+    int largest_page_number = 0;
+    int page_table = 0;
+    int page_number = 0;
+    int offset = 0;
 
-    int largest_page_number;
-    int page_table;
-    int page_number;
-    int offset;
+    AddressInformation(int address){
+        this->address = address;
+        this->page_number = (address & page_number_mask) >> 12;
+        this->offset = (address & offset_mask);
+    }
+
+    void print_information(){
+        // Prints in the format requested
+        printf("\nThe largest possible page number is: %d", largest_page_number);
+        printf("\nThe page table size is: %d", largest_page_number);
+        printf("\nGiven the address of  %d", address);
+        printf("\nThe page number is: %d", page_number);
+        printf("\nThe page offset is: %d", offset);
+
+    }
 };
 
 class TranslateAddr
 {
 
 public:
-    const char *address;
+    int address;
     TranslateAddr(const char *address)
     {
 
-        this->address = address;
+        this->address = atoi(address);
     }
 
     bool verifyAddress()
@@ -43,19 +52,7 @@ public:
     void computeAddressInformation()
     {
 
-        int Pg_no, offset;
-        unsigned int reference;
-
-        reference = (unsigned int)atoi(this->address);
-
-        cout << "the address contains " << reference << endl;
-
-        Pg_no = (reference & Pg_no_mask) >> 12;
-
-        offset = reference & offset_mask;
-
-        cout << "page number = " << Pg_no << endl;
-
-        cout << "offset = " << offset;
+        AddressInformation adrInfo(this->address);
+        adrInfo.print_information();
     }
 };

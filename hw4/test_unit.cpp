@@ -11,8 +11,7 @@ using namespace std;
 
 void test_problem_1_address(void){
     TranslateAddr ta("19986");
-    auto ans = ta.computeAddressInformation();
-    cout << "\nAns " << ans << endl;
+    ta.computeAddressInformation();
 }
 
 void test_p4(void){
