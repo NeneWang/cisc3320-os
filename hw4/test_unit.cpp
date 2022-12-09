@@ -9,7 +9,7 @@
 using namespace std;
 
 
-void test_problem_1_address(void){
+void part1_test_problem_1_address(void){
     TranslateAddr ta("20221108");
     ta.computeAddressInformation();
 }
@@ -23,5 +23,5 @@ void test_p4(void){
 
 TEST_LIST = {
     {"test_p4", test_p4},
-    {"test_problem_1_address", test_problem_1_address},
+    {"part1_test_problem_1_address", part1_test_problem_1_address},
     {0}};
