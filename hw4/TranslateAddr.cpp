@@ -57,18 +57,13 @@ public:
     int address;
     TranslateAddr(const char *address)
     {
-        long int addr = stol(address);
+        long long int addr = atoll(address);
         if (addr > 4294967296)
         {
             throw invalid_argument("Value is not within the 32 bit range");
         }
 
         this->address = atoi(address);
-    }
-
-    bool verifyAddress()
-    {
-        return false;
     }
 
     void computeAddressInformation()
