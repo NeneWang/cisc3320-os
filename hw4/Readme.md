@@ -8,6 +8,12 @@ Run: (windows)
 make
 ```
 
+Or in Mac run:
+
+```
+make hw4-mac
+```
+
 ![](./../img/2022-12-08-23-56-11.png)
 
 I copied the result down here.
