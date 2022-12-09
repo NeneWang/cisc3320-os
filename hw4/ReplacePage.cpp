@@ -5,7 +5,29 @@
 #include <math.h>
 #include <string>
 #include <climits>
+#include <random>
 using namespace std;
+
+string randomPageRef(int length = 10)
+{
+    string CHARACTER_POOL = "0123456789";
+    int POOL_SIZE = CHARACTER_POOL.size();
+    string result = "";
+    // random_device rd;  // obtain a random number from hardware
+    // mt19937 gen(rd()); // seed the generator
+    // uniform_int_distribution<> distr(0, 10);
+
+    for (int i = 0; i < length; i++)
+    {
+        // gen random num
+        // int rndIndex =
+        // result+=
+        // cout << distr(gen);
+        // cout << ;
+        result += CHARACTER_POOL[rand() % POOL_SIZE];
+    }
+    return result;
+}
 
 class PageReplaceAlgo
 {

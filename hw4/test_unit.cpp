@@ -63,11 +63,29 @@ void part_3_opt(void)
     opt.printResults("Optimal using 70120304230321201701 ");
 }
 
+void part_3_opt_2(void)
+{
+    // https://www.youtube.com/watch?v=XmdgDHhx0fg&ab_channel=TechXArena
+
+    string reference = "2342137543";
+    PageReplaceAlgo opt(reference, 3);
+    opt.iterateAsOptimal();
+    opt.printResults("Optimal using 2142137543 ");
+}
+
+void test_random(void){
+    cout << randomPageRef(10) << endl;
+    cout << randomPageRef(100) << endl;
+    cout << randomPageRef(12) << endl;
+}
+
 TEST_LIST = {
-    {"part_1", part_1},
+    // {"test_random", test_random},
+    // {"part_1", part_1},
     // {"part_2", part_2_fifo},
     // {"part_2_LRU", part_2_LRU},
     // {"part_2_LRU_2", part_2_LRU_2},
     // {"part_2_belady", part_2_belady},
     {"part_3_opt", part_3_opt},
+    // {"part_3_opt_2", part_3_opt_2},
     {0}};
