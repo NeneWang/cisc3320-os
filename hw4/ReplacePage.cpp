@@ -64,7 +64,6 @@ public:
             // Append but if over the desired frame then go back and edit the one on the pointer
             char page = reference[i];
             bool faultFound = false;
-            cout << "sda" << endl;
             // Check if in the frames
             if (!(frames.find(page) < frames.length()))
             {
@@ -93,30 +92,31 @@ public:
 
                 int foundAt = frames.find(page);
 
+                // cout << endl
+                //      << page << " Found at: "
+                //      << foundAt<< " reseting age: " << ageVect.at(1)<< endl;
                 
-                cout << endl
-                     << page << " Found at: "
-                     << foundAt<< " editing age: " << ageVect.at(1)<< endl;
                 resetAge(ageVect, foundAt);
             }
 
             this->ageOlder(ageVect);
+            // cout<<"\naged: "<<endl;
             this->printFrames(page, faultFound);
         }
-        cout << "end program" << endl;
+        
     }
 
-    void replaceOldest(char newPage, vector<int> ageVector)
+    void replaceOldest(char newPage, vector<int> &ageVector)
     {
-        cout << "end program" << endl;
         // Find the largest one, replace it, and also reset it's age vector (in its index)
         int oldestAge = 0;
         int oldestIndex = 0;
+        
 
         for (int i = 0; i < ageVector.size(); i++)
         {
             
-        cout << "end program" << endl;
+        
             int currentAge = ageVector[i];
             if (currentAge > oldestAge)
             {
@@ -124,22 +124,34 @@ public:
                 oldestIndex = i;
             }
         }
-
+        // cout << "\nOldest age at " << oldestAge << " index "<< oldestIndex << endl;
+        resetAge(ageVector, oldestIndex);
+        
         // Replace
         this->frames[oldestIndex] = newPage;
     }
 
+    void printAges(vector<int> &ageVetor){
+        cout << endl;
+        for (int age:ageVetor){
+            cout << age<<'-';
+        }
+        cout << endl;
+    }
+
     void ageOlder(vector<int> &ageVector)
     {
-        for (auto it = begin(ageVector); it != end(ageVector); it++)
+        for (auto it = ageVector.begin(); it != ageVector.end(); ++it)
         {
-            *it++;
+        // cout << "Agging older?" << endl;
+            *it = *it+1;
         }
     }
 
     void resetAge(vector<int> &ageVector, int index)
     {
         // Resets the age in specified index
+        
         ageVector[index] = 0;
     }
 
@@ -151,6 +163,7 @@ public:
     void printFrames(char currentPage, bool faultFound)
     {
         string message = "";
+        // faultFound = true;
         if (faultFound)
             message = this->frames;
 

@@ -24,14 +24,13 @@ void part_2_fifo(void)
     fifo.printResults("FIFO");
 }
 
-
 void part_2_LRU(void)
 {
 
     string reference = "70120304230321201701";
     PageReplaceAlgo lru(reference, 3);
     lru.iterateAsLRU();
-    lru.printResults("FIFO");
+    lru.printResults("LRU using 70120304230321201701 ");
 }
 
 void part_2_LRU_2(void)
@@ -40,9 +39,8 @@ void part_2_LRU_2(void)
     string reference = "701203042303212";
     PageReplaceAlgo lru(reference, 3);
     lru.iterateAsLRU();
-    lru.printResults("FIFO");
+    lru.printResults("LRU using 701203042303212");
 }
-
 
 void part_2_belady(void)
 {
@@ -52,18 +50,15 @@ void part_2_belady(void)
     fifo_3.iterateAsFifo();
     fifo_3.printResults("3 Frames FIFO");
 
-    
     PageReplaceAlgo fifo_4(reference, 4);
     fifo_4.iterateAsFifo();
     fifo_4.printResults("4 Frames FIFO");
 }
 
-
 TEST_LIST = {
-    // {"part_2_LRU", part_2_LRU},
+    {"part_1", part_1},
+    {"part_2_LRU", part_2_LRU},
     {"part_2_LRU_2", part_2_LRU_2},
-    // {"test_p4", test_p4},
-    // {"part_1", part_1},
-    // {"part_2", part_2_fifo},
-    // {"part_2_belady", part_2_belady},
+    {"part_2", part_2_fifo},
+    {"part_2_belady", part_2_belady},
     {0}};
