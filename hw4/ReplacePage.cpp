@@ -20,8 +20,8 @@ public:
     {
         this->reference = reference;
         this->desired_frame = desired_frame;
-        this->length = reference.size();
-        string spaces(this->length, ' ');
+        this->length = reference.length();
+        string spaces(desired_frame, ' ');
         this->frames = spaces;
     }
 
@@ -108,7 +108,7 @@ public:
 
     // Optimal Iteration
     void iterateAsOptimal()
-     {
+    {
         int lastReferencedInPage = 0;
         for (int i = 0; i < length; i++)
         {
@@ -123,7 +123,7 @@ public:
                 {
                     // Run replacement by age.
                     this->optimalChange(page, i);
-                    cout << "\n\nRunning optimal";
+                    // cout << "\n\nRunning optimal";
                 }
                 else
                 {
@@ -135,11 +135,10 @@ public:
 
                 faultFound = true;
             }
-            
+
             this->printFrames(page, faultFound);
         }
     }
-
 
     void replaceLargest(char newPage, vector<int> &ageVector)
     {
@@ -157,7 +156,7 @@ public:
                 oldestIndex = i;
             }
         }
-        // cout << "\nOldest age at " << oldestAge << " index "<< oldestIndex << endl;
+        // cout << "\nOldest age at " << oldestAge << " index " << oldestIndex << endl;
         resetAge(ageVector, oldestIndex);
 
         // Replace
@@ -182,15 +181,18 @@ public:
 
         for (char page : this->frames)
         {
+
             int turnToBeSeen = this->willBeSeenAtTurn(turn, page);
+            // cout << "\n appending " << page << " from pages " << turnToBeSeen << endl;
             willBeReplacedInXTurns.push_back(turnToBeSeen);
         }
+        // cout << "\nsize " << willBeReplacedInXTurns.size();
         this->replaceLargest(newPage, willBeReplacedInXTurns);
     }
 
     int willBeSeenAtTurn(int currentTurn, char targetCharacter)
     {
-        for (int idx = currentTurn; idx < this->reference.size(); idx++)
+        for (int idx = currentTurn; idx < this->length; idx++)
         {
             if (targetCharacter == this->reference[idx])
             {
