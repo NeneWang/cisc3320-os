@@ -64,7 +64,7 @@ public:
             // Append but if over the desired frame then go back and edit the one on the pointer
             char page = reference[i];
             bool faultFound = false;
-
+            cout << "sda" << endl;
             // Check if in the frames
             if (!(frames.find(page) < frames.length()))
             {
@@ -103,16 +103,20 @@ public:
             this->ageOlder(ageVect);
             this->printFrames(page, faultFound);
         }
+        cout << "end program" << endl;
     }
 
     void replaceOldest(char newPage, vector<int> ageVector)
     {
+        cout << "end program" << endl;
         // Find the largest one, replace it, and also reset it's age vector (in its index)
         int oldestAge = 0;
         int oldestIndex = 0;
 
         for (int i = 0; i < ageVector.size(); i++)
         {
+            
+        cout << "end program" << endl;
             int currentAge = ageVector[i];
             if (currentAge > oldestAge)
             {
