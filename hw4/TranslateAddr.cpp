@@ -3,11 +3,13 @@
 #include <iostream>
 #include <cstdio>
 #include <math.h>
+#include <stdexcept>
 
 using namespace std;
 
 #define page_number_mask 0xFFFFF000
 #define offset_mask 0x00000FFF
+#define mask_32_bit 0xffffffff
 
 using namespace std;
 
@@ -19,15 +21,15 @@ struct AddressInformation
     int page_number = 0;
     int offset = 0;
     const int LOGICAL_BITS = 32;
-    const int PAGE_SIZE = pow(2, 12); //4kb ; 12 bits
-    const int ENTRY_SIZE = 4; // In bytes
+    const int PAGE_SIZE = pow(2, 12); // 4kb ; 12 bits
+    const int ENTRY_SIZE = 4;         // In bytes
     const int BYTE_IN_MEGABYTE = 1000000;
-    const int OUTERPAGEENTRY = 10;//1024 entrie -> 10 buts ; 
+    const int OUTERPAGEENTRY = 10; // 1024 entrie -> 10 buts ;
     // 32 = OUTERPAGEENTRY + 12 + x => x = 10
 
-    AddressInformation(int address)
+    AddressInformation(unsigned long long address)
     {
-        this->largest_page_number = pow(2, this->LOGICAL_BITS)/PAGE_SIZE;
+        this->largest_page_number = pow(2, this->LOGICAL_BITS) / PAGE_SIZE;
         // Assuming each entry is 4 bytes
         this->table_size = largest_page_number * ENTRY_SIZE;
         this->address = address;
@@ -55,12 +57,18 @@ public:
     int address;
     TranslateAddr(const char *address)
     {
+        long addr = stol(address);
+        if (addr > 4294967296)
+        {
+            throw invalid_argument("Value is not within the 32 bit range");
+        }
 
         this->address = atoi(address);
     }
 
     bool verifyAddress()
     {
+        return false;
     }
 
     void computeAddressInformation()
