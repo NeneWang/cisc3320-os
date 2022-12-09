@@ -15,7 +15,7 @@ void part_1(void)
     ta.computeAddressInformation();
 }
 
-void part_2(void)
+void part_2_fifo(void)
 {
 
     string reference = "70120304230321201701";
@@ -23,6 +23,26 @@ void part_2(void)
     fifo.iterateAsFifo();
     fifo.printResults("FIFO");
 }
+
+
+void part_2_LRU(void)
+{
+
+    string reference = "70120304230321201701";
+    PageReplaceAlgo lru(reference, 3);
+    lru.iterateAsLRU();
+    lru.printResults("FIFO");
+}
+
+void part_2_LRU_2(void)
+{
+
+    string reference = "701203042303212";
+    PageReplaceAlgo lru(reference, 3);
+    lru.iterateAsLRU();
+    lru.printResults("FIFO");
+}
+
 
 void part_2_belady(void)
 {
@@ -38,9 +58,12 @@ void part_2_belady(void)
     fifo_4.printResults("4 Frames FIFO");
 }
 
+
 TEST_LIST = {
+    // {"part_2_LRU", part_2_LRU},
+    {"part_2_LRU_2", part_2_LRU_2},
     // {"test_p4", test_p4},
     // {"part_1", part_1},
-    {"part_2", part_2},
-    {"part_2_belady", part_2_belady},
+    // {"part_2", part_2_fifo},
+    // {"part_2_belady", part_2_belady},
     {0}};

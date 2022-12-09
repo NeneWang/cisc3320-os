@@ -53,11 +53,12 @@ public:
             this->printFrames(page, faultFound);
         }
     }
-    
-    // Simulates iteration of the as using 
-    void iterateAsFifo()
+
+    // Simulates iteration of the as using LURI
+    void iterateAsLRU()
     {
         int lastReferencedInPage = 0;
+        vector<int> ageVect; // The idea is to have an age vect for the elements.
         for (int i = 0; i < length; i++)
         {
             // Append but if over the desired frame then go back and edit the one on the pointer
@@ -68,20 +69,74 @@ public:
             if (!(frames.find(page) < frames.length()))
             {
                 // cout << "Fault: " << page << endl;
+                // Update age for all
                 // If found but however is larger than index 3(2) then go reference to the first (0)
                 if (lastReferencedInPage >= this->desired_frame)
                 {
-                    lastReferencedInPage = 0;
+                    // Run replacement by age.
+                    this->replaceOldest(page, ageVect);
+                }
+                else
+                {
+                    frames[lastReferencedInPage] = page;
+                    ageVect.push_back(0);
+                    lastReferencedInPage++;
                 }
 
-                // // If not found then add
                 this->faults++;
-                frames[lastReferencedInPage] = page;
-                lastReferencedInPage++;
+
+                // // If not found then add
                 faultFound = true;
             }
+            else
+            {
+
+                int foundAt = frames.find(page);
+
+                
+                cout << endl
+                     << page << " Found at: "
+                     << foundAt<< " editing age: " << ageVect.at(1)<< endl;
+                resetAge(ageVect, foundAt);
+            }
+
+            this->ageOlder(ageVect);
             this->printFrames(page, faultFound);
         }
+    }
+
+    void replaceOldest(char newPage, vector<int> ageVector)
+    {
+        // Find the largest one, replace it, and also reset it's age vector (in its index)
+        int oldestAge = 0;
+        int oldestIndex = 0;
+
+        for (int i = 0; i < ageVector.size(); i++)
+        {
+            int currentAge = ageVector[i];
+            if (currentAge > oldestAge)
+            {
+                oldestAge = currentAge;
+                oldestIndex = i;
+            }
+        }
+
+        // Replace
+        this->frames[oldestIndex] = newPage;
+    }
+
+    void ageOlder(vector<int> &ageVector)
+    {
+        for (auto it = begin(ageVector); it != end(ageVector); it++)
+        {
+            *it++;
+        }
+    }
+
+    void resetAge(vector<int> &ageVector, int index)
+    {
+        // Resets the age in specified index
+        ageVector[index] = 0;
     }
 
     void printResults(const char *prepend = "")
