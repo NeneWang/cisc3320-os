@@ -1,11 +1,15 @@
+test_unit
 Test part_1... 
 The largest possible page number is: 1048576
 The page table size is: 4194304 bytes.
 Given the address of  20221108
 The page number is: 4936
 The page offset is: 3252
-With a 2-level page table, the outer page number (p1) is:: 10
-With a 2-level page table, the inner page number (p1) is:: 10[ OK ]
+With a 2-level page table, the outer page number (p1) is:: 4
+With a 2-level page table, the inner page number (p1) is:: 840[ OK ]
+Test part_1_b_error...                          [ FAILED ]
+  Threw std::exception... failed
+    std::exception::what(): Value is not within the 32 bit range
 Test part_2... 
 7: 7
 0: 70
@@ -99,39 +103,12 @@ Test part_3_opt...
 0:
 1:
 Optimal using 70120304230321201701 : total # of page fault is: 9 [ OK ]
-Test part_3_opt_random... 
-FIFO, with 1 pages : total # of page fault is: 89
-LRU, with 1 pages : total # of page fault is: 89
-Optimal, with 1 pages : total # of page fault is: 89
-
-
-FIFO, with 2 pages : total # of page fault is: 85
-LRU, with 2 pages : total # of page fault is: 85
-Optimal, with 2 pages : total # of page fault is: 68
-
-
-FIFO, with 3 pages : total # of page fault is: 76
-LRU, with 3 pages : total # of page fault is: 76
-Optimal, with 3 pages : total # of page fault is: 52
-
-
-FIFO, with 4 pages : total # of page fault is: 66
-LRU, with 4 pages : total # of page fault is: 68
-Optimal, with 4 pages : total # of page fault is: 39
-
-
-FIFO, with 5 pages : total # of page fault is: 54
-LRU, with 5 pages : total # of page fault is: 55
-Optimal, with 5 pages : total # of page fault is: 31
-
-
-FIFO, with 6 pages : total # of page fault is: 45
-LRU, with 6 pages : total # of page fault is: 45
-Optimal, with 6 pages : total # of page fault is: 24
-
-
-FIFO, with 7 pages : total # of page fault is: 37
-LRU, with 7 pages : total # of page fault is: 33
-Optimal, with 7 pages : total # of page fault is: 19
-
-[ OK ]
+Test part_3_opt_partial... 
+1: 907, 907(0%), 907(0%)
+2: 654, 809(23%), 809(23%)
+3: 491, 713(45%), 722(47%)
+4: 374, 609(62%), 627(67%)
+5: 278, 506(82%), 517(85%)
+6: 202, 409(102%), 409(102%)
+7: 136, 308(126%), 305(124%)[ OK ]
+FAILED: 1 of 7 unit tests has failed.
