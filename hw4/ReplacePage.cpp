@@ -6,41 +6,38 @@
 #include <string>
 using namespace std;
 
-class FIFO
+class PageReplaceAlgo
 {
     string reference;
     int desired_frame = 3;
     int length;
-    string frames="   ";
+    string frames = "   ";
     int faults = 0;
 
 public:
-    FIFO(string reference, int desired_frame = 3, int refLen = 0)
+    PageReplaceAlgo(string reference, int desired_frame = 3, int refLen = 0)
     {
         this->reference = reference;
         this->desired_frame = desired_frame;
         this->length = reference.size();
         string spaces(this->length, ' ');
         this->frames = spaces;
-        
     }
 
-    // Simulates iteration of the frames
-    void iterate()
+    // Simulates iteration of the as if it were using FIFO
+    void iterateAsFifo()
     {
         int lastReferencedInPage = 0;
         for (int i = 0; i < length; i++)
         {
             // Append but if over the desired frame then go back and edit the one on the pointer
             char page = reference[i];
+            bool faultFound = false;
 
             // Check if in the frames
-            if (frames.find(page) < frames.length())
+            if (!(frames.find(page) < frames.length()))
             {
-            }
-            else
-            {
-                cout << "Fault: "<< page << endl;
+                // cout << "Fault: " << page << endl;
                 // If found but however is larger than index 3(2) then go reference to the first (0)
                 if (lastReferencedInPage >= this->desired_frame)
                 {
@@ -48,26 +45,58 @@ public:
                 }
 
                 // // If not found then add
-                // frames+=page;
+                this->faults++;
                 frames[lastReferencedInPage] = page;
                 lastReferencedInPage++;
-                cout<<frames<<endl;
-                this->printFrames();
+                faultFound = true;
             }
-            // this->printFrames();
+            this->printFrames(page, faultFound);
+        }
+    }
+    
+    // Simulates iteration of the as using 
+    void iterateAsFifo()
+    {
+        int lastReferencedInPage = 0;
+        for (int i = 0; i < length; i++)
+        {
+            // Append but if over the desired frame then go back and edit the one on the pointer
+            char page = reference[i];
+            bool faultFound = false;
+
+            // Check if in the frames
+            if (!(frames.find(page) < frames.length()))
+            {
+                // cout << "Fault: " << page << endl;
+                // If found but however is larger than index 3(2) then go reference to the first (0)
+                if (lastReferencedInPage >= this->desired_frame)
+                {
+                    lastReferencedInPage = 0;
+                }
+
+                // // If not found then add
+                this->faults++;
+                frames[lastReferencedInPage] = page;
+                lastReferencedInPage++;
+                faultFound = true;
+            }
+            this->printFrames(page, faultFound);
         }
     }
 
-    void printFrames()
+    void printResults(const char *prepend = "")
     {
-        // Iterate pages in frame and print them
+        printf("\n%s: total # of page fault is: %d ", prepend, this->faults);
+    }
 
-        // for (char page : frames)
-        // {
-        //     cout << page << " ";
-        // }
+    void printFrames(char currentPage, bool faultFound)
+    {
+        string message = "";
+        if (faultFound)
+            message = this->frames;
 
-        cout << frames << endl;
+        cout << endl
+             << currentPage << ": " << message;
     }
 
     // The idea is to keep a pointer of the last on the array
