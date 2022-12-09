@@ -1,5 +1,4 @@
 #include "acutest.hpp"
-#include "main.cpp"
 #include "utils.cpp"
 
 #include <iostream>
@@ -57,8 +56,8 @@ void part_2_belady(void)
 
 TEST_LIST = {
     {"part_1", part_1},
-    {"part_2_LRU", part_2_LRU},
-    {"part_2_LRU_2", part_2_LRU_2},
-    {"part_2", part_2_fifo},
-    {"part_2_belady", part_2_belady},
+    // {"part_2", part_2_fifo},
+    // {"part_2_LRU", part_2_LRU},
+    // {"part_2_LRU_2", part_2_LRU_2},
+    // {"part_2_belady", part_2_belady},
     {0}};
