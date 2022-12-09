@@ -13,20 +13,17 @@ string randomPageRef(int length = 10)
     string CHARACTER_POOL = "0123456789";
     int POOL_SIZE = CHARACTER_POOL.size();
     string result = "";
-    // random_device rd;  // obtain a random number from hardware
-    // mt19937 gen(rd()); // seed the generator
-    // uniform_int_distribution<> distr(0, 10);
 
     for (int i = 0; i < length; i++)
     {
-        // gen random num
-        // int rndIndex =
-        // result+=
-        // cout << distr(gen);
-        // cout << ;
         result += CHARACTER_POOL[rand() % POOL_SIZE];
     }
     return result;
+}
+
+int getPercentage(int nominal, int base)
+{
+    return ((double)(nominal * 100 )/ base)-100;
 }
 
 class PageReplaceAlgo
@@ -35,9 +32,9 @@ class PageReplaceAlgo
     int desired_frame = 3;
     int length;
     string frames = "   ";
-    int faults = 0;
 
 public:
+    int faults = 0;
     PageReplaceAlgo(string reference, int desired_frame = 3, int refLen = 0)
     {
         this->reference = reference;
@@ -48,7 +45,7 @@ public:
     }
 
     // Simulates iteration of the as if it were using FIFO
-    void iterateAsFifo(bool debug=true)
+    void iterateAsFifo(bool debug = true)
     {
         int lastReferencedInPage = 0;
         for (int i = 0; i < length; i++)
@@ -74,12 +71,13 @@ public:
                 faultFound = true;
             }
 
-            if(debug) this->printFrames(page, faultFound);
+            if (debug)
+                this->printFrames(page, faultFound);
         }
     }
 
     // Simulates iteration of the as using LURI
-    void iterateAsLRU(bool debug=true)
+    void iterateAsLRU(bool debug = true)
     {
         int lastReferencedInPage = 0;
         vector<int> ageVect; // The idea is to have an age vect for the elements.
@@ -125,12 +123,13 @@ public:
 
             this->ageOlder(ageVect);
             // cout<<"\naged: "<<endl;
-            if(debug) this->printFrames(page, faultFound);
+            if (debug)
+                this->printFrames(page, faultFound);
         }
     }
 
     // Optimal Iteration
-    void iterateAsOptimal(bool debug=true)
+    void iterateAsOptimal(bool debug = true)
     {
         int lastReferencedInPage = 0;
         for (int i = 0; i < length; i++)
@@ -159,7 +158,8 @@ public:
                 faultFound = true;
             }
 
-            if(debug) this->printFrames(page, faultFound);
+            if (debug)
+                this->printFrames(page, faultFound);
         }
     }
 

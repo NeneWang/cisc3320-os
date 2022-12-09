@@ -75,7 +75,7 @@ void part_3_opt_2(void)
 
 void part_3_opt_random(void)
 {
-    string reference = randomPageRef(100);
+    string reference = randomPageRef(1000);
     for (int framePages = 1; framePages <= 7; framePages++)
     {
         string type, message;
@@ -102,28 +102,28 @@ void part_3_opt_random(void)
     }
 }
 
-void part_3_opt_formatted(void)
+void part_3_opt_partial(void)
 {
-    string reference = randomPageRef(100);
+    string reference = randomPageRef(1000);
     for (int framePages = 1; framePages <= 7; framePages++)
     {
         string type, message;
 
-        
 
         PageReplaceAlgo opt(reference, framePages);
         opt.iterateAsOptimal(false);
-        opt.printResults(message.c_str());
-
+        int opt_faults = opt.faults;
+        
         PageReplaceAlgo fifo(reference, framePages);
         fifo.iterateAsFifo(false);
-        fifo.printResults(message.c_str());
+        int fifo_faults = fifo.faults;
 
         PageReplaceAlgo lru(reference, framePages);
         lru.iterateAsLRU(false);
-        lru.printResults(message.c_str());
+        int lru_faults = lru.faults;
 
-        cout << "\n" << endl;
+        printf("\n%d: %d, %d(%d%%), %d(%d%%)", 
+        framePages, opt_faults, fifo_faults, getPercentage(fifo_faults, opt_faults), lru_faults, getPercentage(lru_faults, opt_faults));
     }
 }
 
@@ -143,6 +143,6 @@ TEST_LIST = {
     {"part_2_belady", part_2_belady},
     {"part_3_opt", part_3_opt},
     // {"part_3_opt_2", part_3_opt_2},
-    {"part_3_opt_random", part_3_opt_random},
-    // {"part_3_opt_formatted", part_3_opt_formatted},
+    // {"part_3_opt_random", part_3_opt_random},
+    {"part_3_opt_partial", part_3_opt_partial},
     {0}};
