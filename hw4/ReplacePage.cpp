@@ -48,7 +48,7 @@ public:
     }
 
     // Simulates iteration of the as if it were using FIFO
-    void iterateAsFifo()
+    void iterateAsFifo(bool debug=true)
     {
         int lastReferencedInPage = 0;
         for (int i = 0; i < length; i++)
@@ -73,12 +73,13 @@ public:
                 lastReferencedInPage++;
                 faultFound = true;
             }
-            this->printFrames(page, faultFound);
+
+            if(debug) this->printFrames(page, faultFound);
         }
     }
 
     // Simulates iteration of the as using LURI
-    void iterateAsLRU()
+    void iterateAsLRU(bool debug=true)
     {
         int lastReferencedInPage = 0;
         vector<int> ageVect; // The idea is to have an age vect for the elements.
@@ -124,12 +125,12 @@ public:
 
             this->ageOlder(ageVect);
             // cout<<"\naged: "<<endl;
-            this->printFrames(page, faultFound);
+            if(debug) this->printFrames(page, faultFound);
         }
     }
 
     // Optimal Iteration
-    void iterateAsOptimal()
+    void iterateAsOptimal(bool debug=true)
     {
         int lastReferencedInPage = 0;
         for (int i = 0; i < length; i++)
@@ -158,7 +159,7 @@ public:
                 faultFound = true;
             }
 
-            this->printFrames(page, faultFound);
+            if(debug) this->printFrames(page, faultFound);
         }
     }
 

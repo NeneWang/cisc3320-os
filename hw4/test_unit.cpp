@@ -73,7 +73,37 @@ void part_3_opt_2(void)
     opt.printResults("Optimal using 2142137543 ");
 }
 
-void test_random(void){
+void part_3_opt_random(void)
+{
+    string reference = randomPageRef(100);
+    for (int framePages = 1; framePages <= 7; framePages++)
+    {
+        string type, message;
+
+        PageReplaceAlgo fifo(reference, framePages);
+        fifo.iterateAsOptimal(false);
+        type = "FIFO";
+        message = type +", with " + to_string(framePages) + " pages ";
+        fifo.printResults(message.c_str());
+
+        PageReplaceAlgo lru(reference, framePages);
+        lru.iterateAsOptimal(false);
+        type = "LRU";
+        message = type +", with " + to_string(framePages) + " pages ";
+        lru.printResults(message.c_str());
+
+
+        PageReplaceAlgo opt(reference, framePages);
+        opt.iterateAsOptimal(false);
+        type = "Optimal";
+        message = type +", with " + to_string(framePages) + " pages ";
+        opt.printResults(message.c_str());
+        cout << "\n" << endl;
+    }
+}
+
+void test_random(void)
+{
     cout << randomPageRef(10) << endl;
     cout << randomPageRef(100) << endl;
     cout << randomPageRef(12) << endl;
@@ -86,6 +116,7 @@ TEST_LIST = {
     // {"part_2_LRU", part_2_LRU},
     // {"part_2_LRU_2", part_2_LRU_2},
     // {"part_2_belady", part_2_belady},
-    {"part_3_opt", part_3_opt},
+    // {"part_3_opt", part_3_opt},
     // {"part_3_opt_2", part_3_opt_2},
+    {"part_3_opt_random", part_3_opt_random},
     {0}};
