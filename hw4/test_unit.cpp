@@ -102,6 +102,31 @@ void part_3_opt_random(void)
     }
 }
 
+void part_3_opt_formatted(void)
+{
+    string reference = randomPageRef(100);
+    for (int framePages = 1; framePages <= 7; framePages++)
+    {
+        string type, message;
+
+        
+
+        PageReplaceAlgo opt(reference, framePages);
+        opt.iterateAsOptimal(false);
+        opt.printResults(message.c_str());
+
+        PageReplaceAlgo fifo(reference, framePages);
+        fifo.iterateAsFifo(false);
+        fifo.printResults(message.c_str());
+
+        PageReplaceAlgo lru(reference, framePages);
+        lru.iterateAsLRU(false);
+        lru.printResults(message.c_str());
+
+        cout << "\n" << endl;
+    }
+}
+
 void test_random(void)
 {
     cout << randomPageRef(10) << endl;
@@ -119,4 +144,5 @@ TEST_LIST = {
     // {"part_3_opt", part_3_opt},
     // {"part_3_opt_2", part_3_opt_2},
     {"part_3_opt_random", part_3_opt_random},
+    // {"part_3_opt_formatted", part_3_opt_formatted},
     {0}};
