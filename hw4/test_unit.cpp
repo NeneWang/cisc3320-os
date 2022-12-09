@@ -81,13 +81,13 @@ void part_3_opt_random(void)
         string type, message;
 
         PageReplaceAlgo fifo(reference, framePages);
-        fifo.iterateAsOptimal(false);
+        fifo.iterateAsFifo(false);
         type = "FIFO";
         message = type +", with " + to_string(framePages) + " pages ";
         fifo.printResults(message.c_str());
 
         PageReplaceAlgo lru(reference, framePages);
-        lru.iterateAsOptimal(false);
+        lru.iterateAsLRU(false);
         type = "LRU";
         message = type +", with " + to_string(framePages) + " pages ";
         lru.printResults(message.c_str());
