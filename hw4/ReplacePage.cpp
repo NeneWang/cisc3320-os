@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <math.h>
 #include <string>
+#include <climits>
 using namespace std;
 
 class PageReplaceAlgo
@@ -73,7 +74,7 @@ public:
                 if (lastReferencedInPage >= this->desired_frame)
                 {
                     // Run replacement by age.
-                    this->replaceOldest(page, ageVect);
+                    this->replaceLargest(page, ageVect);
                 }
                 else
                 {
@@ -95,7 +96,7 @@ public:
                 // cout << endl
                 //      << page << " Found at: "
                 //      << foundAt<< " reseting age: " << ageVect.at(1)<< endl;
-                
+
                 resetAge(ageVect, foundAt);
             }
 
@@ -103,20 +104,52 @@ public:
             // cout<<"\naged: "<<endl;
             this->printFrames(page, faultFound);
         }
-        
     }
 
-    void replaceOldest(char newPage, vector<int> &ageVector)
+    // Optimal Iteration
+    void iterateAsOptimal()
+     {
+        int lastReferencedInPage = 0;
+        for (int i = 0; i < length; i++)
+        {
+            // Append but if over the desired frame then go back and edit the one on the pointer
+            char page = reference[i];
+            bool faultFound = false;
+            // Check if in the frames
+            if (!(frames.find(page) < frames.length()))
+            {
+                // cout << "Fault: " << page << endl;
+                if (lastReferencedInPage >= this->desired_frame)
+                {
+                    // Run replacement by age.
+                    this->optimalChange(page, i);
+                    cout << "\n\nRunning optimal";
+                }
+                else
+                {
+                    frames[lastReferencedInPage] = page;
+                    lastReferencedInPage++;
+                }
+
+                this->faults++;
+
+                faultFound = true;
+            }
+            
+            this->printFrames(page, faultFound);
+        }
+    }
+
+
+    void replaceLargest(char newPage, vector<int> &ageVector)
     {
         // Find the largest one, replace it, and also reset it's age vector (in its index)
         int oldestAge = 0;
         int oldestIndex = 0;
-        
 
         for (int i = 0; i < ageVector.size(); i++)
         {
-            
-        
+
             int currentAge = ageVector[i];
             if (currentAge > oldestAge)
             {
@@ -126,32 +159,61 @@ public:
         }
         // cout << "\nOldest age at " << oldestAge << " index "<< oldestIndex << endl;
         resetAge(ageVector, oldestIndex);
-        
+
         // Replace
         this->frames[oldestIndex] = newPage;
     }
 
-    void printAges(vector<int> &ageVetor){
+    void printAges(vector<int> &ageVetor)
+    {
         cout << endl;
-        for (int age:ageVetor){
-            cout << age<<'-';
+        for (int age : ageVetor)
+        {
+            cout << age << '-';
         }
         cout << endl;
+    }
+
+    void optimalChange(char newPage, int turn)
+    {
+        // For each item in the frame check create vector with largest and index.
+        // Then grab smaller and use that index to replace
+        vector<int> willBeReplacedInXTurns;
+
+        for (char page : this->frames)
+        {
+            int turnToBeSeen = this->willBeSeenAtTurn(turn, page);
+            willBeReplacedInXTurns.push_back(turnToBeSeen);
+        }
+        this->replaceLargest(newPage, willBeReplacedInXTurns);
+    }
+
+    int willBeSeenAtTurn(int currentTurn, char targetCharacter)
+    {
+        for (int idx = currentTurn; idx < this->reference.size(); idx++)
+        {
+            if (targetCharacter == this->reference[idx])
+            {
+                // The further in the turns
+                return idx;
+            }
+        }
+        return INT_MAX; // means to be replaced cause ti will never be seen
     }
 
     void ageOlder(vector<int> &ageVector)
     {
         for (auto it = ageVector.begin(); it != ageVector.end(); ++it)
         {
-        // cout << "Agging older?" << endl;
-            *it = *it+1;
+            // cout << "Agging older?" << endl;
+            *it = *it + 1;
         }
     }
 
     void resetAge(vector<int> &ageVector, int index)
     {
         // Resets the age in specified index
-        
+
         ageVector[index] = 0;
     }
 

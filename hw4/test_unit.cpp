@@ -54,10 +54,20 @@ void part_2_belady(void)
     fifo_4.printResults("4 Frames FIFO");
 }
 
+void part_3_opt(void)
+{
+
+    string reference = "70120304230321201701";
+    PageReplaceAlgo opt(reference, 3);
+    opt.iterateAsOptimal();
+    opt.printResults("Optimal using 70120304230321201701 ");
+}
+
 TEST_LIST = {
     {"part_1", part_1},
     // {"part_2", part_2_fifo},
     // {"part_2_LRU", part_2_LRU},
     // {"part_2_LRU_2", part_2_LRU_2},
     // {"part_2_belady", part_2_belady},
+    {"part_3_opt", part_3_opt},
     {0}};
