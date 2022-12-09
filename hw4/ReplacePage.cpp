@@ -23,7 +23,7 @@ string randomPageRef(int length = 10)
 
 int getPercentage(int nominal, int base)
 {
-    return ((double)(nominal * 100 )/ base)-100;
+    return ((double)(nominal * 100 )/ base);
 }
 
 class PageReplaceAlgo
