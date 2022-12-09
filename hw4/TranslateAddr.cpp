@@ -42,8 +42,8 @@ struct AddressInformation
         printf("\nThe page table size is: %d bytes. ", table_size);
         printf("\nGiven the address of  %d", address);
         printf("\nThe page number is: %d", page_number);
-        printf("\nthe outer page number (p1) is:: %d", OUTERPAGEENTRY);
-        printf("\nthe innter page number (p1) is:: %d", OUTERPAGEENTRY);
+        printf("\nWith a 2-level page table, the outer page number (p1) is:: %d", OUTERPAGEENTRY);
+        printf("\nWith a 2-level page table, the innter page number (p1) is:: %d", OUTERPAGEENTRY);
     }
 };
 

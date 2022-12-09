@@ -9,9 +9,13 @@
 using namespace std;
 
 
-void part1_test_problem_1_address(void){
+void part_1(void){
     TranslateAddr ta("20221108");
     ta.computeAddressInformation();
+}
+
+void part_2(void){
+    
 }
 
 void test_p4(void){
@@ -22,6 +26,6 @@ void test_p4(void){
 
 
 TEST_LIST = {
-    {"test_p4", test_p4},
-    {"part1_test_problem_1_address", part1_test_problem_1_address},
+    // {"test_p4", test_p4},
+    {"part_1", part_1},
     {0}};
