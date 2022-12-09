@@ -19,8 +19,6 @@ void part_1(void)
 void part_1_b_error(void)
 {
     TranslateAddr ta("4294967299");
-    
-
     ta.computeAddressInformation();
 }
 
@@ -147,11 +145,11 @@ void test_random(void)
 
 TEST_LIST = {
     // {"test_random", test_random},
-    {"part_1_b_error", part_1_b_error},
-    // {"part_1", part_1},
+    {"part_1", part_1},
+    // {"part_1_b_error", part_1_b_error},
     // {"part_2", part_2_fifo},
     // {"part_2_LRU", part_2_LRU},
-    // // {"part_2_LRU_2", part_2_LRU_2},
+    // // // {"part_2_LRU_2", part_2_LRU_2},
     // {"part_2_belady", part_2_belady},
     // {"part_3_opt", part_3_opt},
     // // {"part_3_opt_2", part_3_opt_2},

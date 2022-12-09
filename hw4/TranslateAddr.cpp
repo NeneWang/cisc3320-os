@@ -27,6 +27,9 @@ struct AddressInformation
     const int OUTERPAGEENTRY = 10; // 1024 entrie -> 10 buts ;
     // 32 = OUTERPAGEENTRY + 12 + x => x = 10
 
+    int outer_page = 0;
+    int inner_page = 0;
+
     AddressInformation(unsigned long long address)
     {
         this->largest_page_number = pow(2, this->LOGICAL_BITS) / PAGE_SIZE;
@@ -35,6 +38,8 @@ struct AddressInformation
         this->address = address;
         this->page_number = (address & page_number_mask) >> 12;
         this->offset = (address & offset_mask);
+
+    
     }
 
     void print_information()
@@ -45,8 +50,8 @@ struct AddressInformation
         printf("\nGiven the address of  %d", address);
         printf("\nThe page number is: %d", page_number);
         printf("\nThe page offset is: %d", offset);
-        printf("\nWith a 2-level page table, the outer page number (p1) is:: %d", OUTERPAGEENTRY);
-        printf("\nWith a 2-level page table, the inner page number (p1) is:: %d", OUTERPAGEENTRY);
+        printf("\nWith a 2-level page table, the outer page number (p1) is:: %d", this->outer_page);
+        printf("\nWith a 2-level page table, the inner page number (p1) is:: %d", this->inner_page);
     }
 };
 
@@ -70,6 +75,17 @@ public:
     {
 
         AddressInformation adrInfo(this->address);
+        populateTablePositions(adrInfo);
         adrInfo.print_information();
     }
+
+    void populateTablePositions(AddressInformation &addrInfo, int outerLevel= 10, int innerLevel=10){
+        int inner_pages = pow(2, innerLevel);
+        int outer = addrInfo.page_number/inner_pages;
+        int inner = addrInfo.page_number%inner_pages;
+        addrInfo.inner_page = inner;
+        addrInfo.outer_page = outer;
+    }
+
+
 };
