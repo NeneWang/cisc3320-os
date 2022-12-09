@@ -57,7 +57,7 @@ public:
     int address;
     TranslateAddr(const char *address)
     {
-        long addr = stol(address);
+        long int addr = stol(address);
         if (addr > 4294967296)
         {
             throw invalid_argument("Value is not within the 32 bit range");
