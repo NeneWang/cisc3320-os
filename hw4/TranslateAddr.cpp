@@ -49,6 +49,7 @@ public:
     bool verifyAddress()
     {
     }
+    
     void computeAddressInformation()
     {
 
